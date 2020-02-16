@@ -65,6 +65,10 @@ class Interpreter implements Expr.Visitor<Object> {
                     return (double)left + (double)right;
                 if(left instanceof String && right instanceof String)
                     return left + (String)right;
+                if(left instanceof String && right instanceof Double)
+                    return left + right.toString();
+                if(left instanceof Double && right instanceof String)
+                    return left.toString() + right;
 
                 throw new RuntimeError(expr.operator, "Operands must be 2 numbers or 2 strings");
             case SLASH:
