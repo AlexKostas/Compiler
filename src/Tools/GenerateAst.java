@@ -20,6 +20,7 @@ public class GenerateAst {
                 "Unary    : Token operator, Expr right",
                 "Variable : Token name"));
         defineAst(outputDir, "Stmt", Arrays.asList(
+                "Block      : List<Stmt> statements",
                 "Expression : Expr expression",
                 "Print      : Expr expression",
                 "Var        : Token name, Expr initializer"));
@@ -44,15 +45,15 @@ public class GenerateAst {
         }
         // The base accept() method
         writer.println();
-        writer.println("  abstract <R> R accept(Visitor<R> visitor);");
+        writer.println("    abstract <R> R accept(Visitor<R> visitor);");
 
-        writer.println("}");
+        writer.print("}");
         writer.close();
     }
 
     private static void defineVisitor(
             PrintWriter writer, String baseName, List<String> types) {
-        writer.println("  interface Visitor<R> {");
+        writer.println("    interface Visitor<R> {");
 
         for (String type : types) {
             String typeName = type.split(":")[0].trim();
@@ -63,7 +64,7 @@ public class GenerateAst {
     }
 
     private static void defineType(PrintWriter writer, String baseName, String className, String fieldList) {
-        writer.println("  static class " + className + " extends " + baseName + " {");
+        writer.println("    static class " + className + " extends " + baseName + " {");
 
         // Constructor.
         writer.println("    " + className + "(" + fieldList + ") {");
