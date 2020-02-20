@@ -1,22 +1,22 @@
 print "----------IF/ELSE TEST---------";
-var age = 16;
-var minAge = 18;
-if(age >= minAge) print "Eligible to drive";
-else {
- print "Not eligible to drive";
- var remainingYears = minAge - age;
- var s = "";
- if(remainingYears > 1) s = "s";
- print "You need " + remainingYears + " more year" + s;
-}
+ var age = 16;
+ var minAge = 18;
+ if(age >= minAge) print "Eligible to drive";
+ else {
+  print "Not eligible to drive";
+  var remainingYears = minAge - age;
+  var s = "";
+  if(remainingYears > 1) s = "s";
+  print "You need " + remainingYears + " more year" + s;
+ }
 
-print "----------FOR LOOP TEST--------------";
-var a = 0;
-var b = 1;
+ print "----------FOR LOOP TEST--------------";
+ var a = 0;
+ var b = 1;
 
-for(var i = 0; i < 20; i = i + 1) {
-  print a;
-  var temp = a;
-  a = b;
-  b = temp + b;
-}
+ for(var i = 0; i < 20; i = i + 1) {
+   print a;
+   var temp = a;
+   a = b;
+   b = temp + b;
+ }

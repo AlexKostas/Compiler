@@ -1,8 +1,6 @@
 package com.compiler.MyLang;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -15,12 +13,8 @@ public class MyLang {
     static boolean hadRuntimeError = false;
 
     public static void main(String args[]) throws IOException{
-        if(args.length > 1){
-            System.out.println("Usage: MyLang [script]");
-            System.exit(64);
-        }
-        else if(args.length == 1) runFile(args[0]);
-        else runPrompt();
+        System.out.println("Enter file path...");
+        runFile(System.console().readLine().trim());
     }
 
     private static void runFile(String path) throws IOException{
@@ -30,22 +24,10 @@ public class MyLang {
         if(hadRuntimeError) System.exit(70);
     }
 
-    private static void runPrompt() throws IOException{
-        var input = new InputStreamReader(System.in);
-        var reader = new BufferedReader(input);
-
-        for(;;){
-            System.out.print("> ");
-            run(reader.readLine());
-            hadError = false;
-        }
-    }
-
     private static void run(String source){
         Scanner scanner = new Scanner(source);
-        var tokens = scanner.scanTokens();
+        List<Token> tokens = scanner.scanTokens();
 
-        //TODO: Temporarily just printing all the tokens
         Parser parser = new Parser(tokens);
         List<Stmt> statements = parser.parse();
 
