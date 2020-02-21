@@ -14,7 +14,8 @@ public class MyLang {
 
     public static void main(String args[]) throws IOException{
         System.out.println("Enter file path...");
-        runFile(System.console().readLine().trim());
+        if(args.length == 0) runFile(System.console().readLine().trim());
+        else runFile(args[0]);
     }
 
     private static void runFile(String path) throws IOException{
